@@ -5,8 +5,6 @@
 	$lastName = $inData["lastName"];
 	$login = $inData["login"];
 	$password = $inData["password"];
-	
-	$userId = $inData["userId"];
 
 	$conn = new mysqli("localhost", "api", "Team4Yay", "COP4331");
 	if ($conn->connect_error) 
@@ -15,21 +13,12 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Users (firstName,lastName,login,password) VALUES(?,?,?,?)");
-		if( $row = $result->fetch_assoc()  )
-		{
-			returnWithError("Dupicate User Signup Attempt");
-		} 
-		else 
-		{
-			$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
-			$stmt->execute();
-		}
-
+		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
+		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+		$stmt->execute();
 		$stmt->close();
 		$conn->close();
-		
-
+		returnWithError("");
 	}
 
 	function getRequestInfo()
@@ -48,12 +37,5 @@
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
-	function returnWithInfo( $firstName, $lastName, $id )
-	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
 	
 ?>
