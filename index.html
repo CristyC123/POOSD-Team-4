@@ -1,22 +1,27 @@
 <html>
-<head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-</head>
-<body>
+	<head>
+		<title>Team 4 Contact Manager</title>
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script type="text/javascript" src="js/code.js"></script>
+		<link href="css/styles.css" rel="stylesheet">	
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	</head>
+	<body>
+		<div id="titleBox">
+			<h1 id="title">Team 4 Contact Manager</h1>
+			
+			<div id="titleBox2">
+				
+			</div>
+		</div>
 
-<h1 id="title">COP 4331 LAMP Stack Demo</h1>
-
-<div id="loginDiv">
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-	<span id="loginResult"></span>
-</div>
-
-</body>
+		<div style="border: 3px solid #000000;" id="loginDiv">
+			<span id="inner-title">Log In or Sign Up</span>
+				<input type="username" id="Username" placeholder="Username" /><br />
+				<input type="password" id="Password" placeholder="Password"/><br />
+				<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
+				<button type="button" id="signUpButton" class="buttons" onclick="doSignup();"> Sign Up </button>
+			<span id="loginResult"></span>
+		</div>
+	</body>
 </html>

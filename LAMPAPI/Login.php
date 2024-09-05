@@ -7,7 +7,7 @@
 	$firstName = "";
 	$lastName = "";
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
+	$conn = new mysqli("localhost", "api", "Team4Yay", "COP4331");	
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
@@ -25,7 +25,7 @@
 		}
 		else
 		{
-			returnWithError("No Records Found");
+			returnWithError("No Records Found. Please Sign Up");
 		}
 
 		$stmt->close();

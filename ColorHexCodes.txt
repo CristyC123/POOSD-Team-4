@@ -1,0 +1,5 @@
+#413fc0 - purplish blue
+#2c95d3 - light blue
+#e0c41f - yellow
+#1f3be0 - dark blue
+#b2b2b2 - gray
