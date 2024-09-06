@@ -1,4 +1,4 @@
-const urlBase = 'http://COP4331-5.com/LAMPAPI';
+const urlBase = 'http://team4project.org/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -60,17 +60,15 @@ function doLogin()
 
 function doSignUp()
 {
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	
+	firstName = document.getElementById("First Name").value;
+	lastName = document.getElementById("Last Name").value;
 	let login = document.getElementById("Username").value;
 	let password = document.getElementById("Password").value;
 //	var hash = md5( password );
 	
 	document.getElementById("singupResult").innerHTML = "";
-
-	let tmp = {login:login,password:password};
+	
+	let tmp = {firstName:lastName,login:password};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -86,10 +84,10 @@ function doSignUp()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
-		
+				
 				firstName = jsonObject.firstName;
 				lastName = jsonObject.lastName;
-
+				
 				saveCookie();
 	
 				window.location.href = "contacts.html";
@@ -290,4 +288,30 @@ function editContact()
 		document.getElementById("contactEditResult").innerHTML = err.message;
 	}
 	
+}
+
+function goLogin()
+{
+	var log = document.getElementById("loginForm");
+	var sign = document.getElementById("signupForm");
+	var lbut = document.getElementById("goLoginButton");
+	var sbut = document.getElementById("goSignUpButton");
+	
+	log.style.top = "0px";
+	sign.style.top = "-400px";
+	lbut.style.top = "500px";
+	sbut.style.top = "400px";
+}
+
+function goSignUp()
+{
+	var log = document.getElementById("loginForm");
+	var sign = document.getElementById("signupForm");
+	var lbut = document.getElementById("goLoginButton");
+	var sbut = document.getElementById("goSignUpButton");
+	
+	log.style.top = "-400px";
+	sign.style.top = "0px";
+	lbut.style.top = "400px";
+	sbut.style.top = "500px";
 }
