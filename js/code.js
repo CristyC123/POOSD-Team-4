@@ -269,23 +269,23 @@ function goLogin()
 	var log = document.getElementById("loginForm");
 	var sign = document.getElementById("signupForm");
 	var lbut = document.getElementById("goLoginButton");
-	var sbut = document.getElementById("goSignUpButton");
+	var sbut = document.getElementById("goSignupButton");
 	
 	log.style.top = "0px";
-	sign.style.top = "-400px";
+	sign.style.top = "400px";
 	lbut.style.top = "500px";
 	sbut.style.top = "400px";
 }
 
-function goSignUp()
+function goSignup()
 {
 	var log = document.getElementById("loginForm");
 	var sign = document.getElementById("signupForm");
 	var lbut = document.getElementById("goLoginButton");
-	var sbut = document.getElementById("goSignUpButton");
+	var sbut = document.getElementById("goSignupButton");
 	
 	log.style.top = "-400px";
-	sign.style.top = "0px";
+	sign.style.top = "-125px";
 	lbut.style.top = "400px";
 	sbut.style.top = "500px";
 }
