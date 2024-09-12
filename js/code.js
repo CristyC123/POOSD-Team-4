@@ -1,4 +1,4 @@
-const urlBase = 'http://team4project.org/LAMPAPI';
+const urlBase = 'http://team4project.com/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -87,13 +87,16 @@ function doLogin()
 	firstName = "";
 	lastName = "";
 	
-	let login = document.getElementById("Username").value;
-	let password = document.getElementById("Password").value;
+	let login = document.getElementById("loginUser").value;
+	let password = document.getElementById("loginPass").value;
 //	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
+	let tmp = {
+		login: login,
+		password:password
+	};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -123,17 +126,22 @@ function doLogin()
 /**
  * Sign up new user to server
  */
-function doSignUp()
+function doSignup()
 {
-	firstName = document.getElementById("First Name").value;
-	lastName = document.getElementById("Last Name").value;
-	let login = document.getElementById("Username").value;
-	let password = document.getElementById("Password").value;
+	firstName = document.getElementById("signupFName").value;
+	lastName = document.getElementById("signupLName").value;
+	let login = document.getElementById("signupUser").value;
+	let password = document.getElementById("signupPass").value;
 //	var hash = md5( password );
 	
 	document.getElementById("singupResult").innerHTML = "";
 	
-	let tmp = {firstName:lastName,login:password};
+	let tmp = {
+		firstName: firstName,
+		lastName: lastName,
+		login: login,
+		password: password;
+	};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -174,7 +182,10 @@ function addContact()
 	let newContact = document.getElementById("contactText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	let tmp = {contact:newContact,userId,userId};
+	let tmp = {
+		contact: newContact,
+		userId: userId
+	};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/Add.' + extension;
@@ -197,9 +208,12 @@ function searchContacts()
 	
 	let contactList = "";
 
-	let tmp = {search:srch,userId:userId};
+	let tmp = {
+		search: srch,
+		userId: userId
+	};
 	let jsonPayload = JSON.stringify( tmp );
-
+	
 	let url = urlBase + '/Search.' + extension;
 
 	xhr(url, jsonPayload, "contactSearchResult", () => {
@@ -230,7 +244,10 @@ function deleteContact()
 	let delContact = document.getElementById("contactText").value;
 	document.getElementById("contactDeleteResult").innerHTML = "";
 	
-	let tmp = {contact:delContact,userId,userId};
+	let tmp = {
+		contact: delContact,
+		userId: userId
+	};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Delete.' + extension;
@@ -251,7 +268,10 @@ function editContact()
 	let newContact = document.getElementById("newContactText").value;
 	document.getElementById("contactEditResult").innerHTML = "";
 
-	let tmp = {contact:newContact,userId,userId};
+	let tmp = {
+		contact: newContact,
+		userId: userId
+	};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/Edit.' + extension;

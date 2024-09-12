@@ -129,14 +129,6 @@ body
 	transition: 0.5s;
 }
 
-#loginText
-{
-	font-size: 25px;
-}
-#signupText
-{
-	font-size: 25px;
-}
 #searchText
 {
 	font-size: 30px;
@@ -155,6 +147,7 @@ input[type="firstname"], input[type="lastname"]
     margin-bottom: 3%;
     font-family: 'Ubuntu', sans-serif;
 	border-radius: 30px;
+	font-size: 25px;
 }
 
 #inner-title
@@ -162,7 +155,7 @@ input[type="firstname"], input[type="lastname"]
     display: inline-block;
     font-size: 30px;
     width: 90%;
-    text-align: right;
+    text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
