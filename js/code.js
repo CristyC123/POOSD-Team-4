@@ -1,4 +1,4 @@
-const urlBase = 'http://team4project.org/LAMPAPI';
+const urlBase = 'http://67.205.155.6/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -91,8 +91,14 @@ function doLogin()
 	let password = document.getElementById("loginPass").value;
 //	var hash = md5( password );
 	
+	//if(!validLogin(login, password))
+	//{
+	//	document.getElementById("loginResult").innerHTML = "Invalid Login";
+	//	return;
+	//}
+	
 	document.getElementById("loginResult").innerHTML = "";
-
+	
 	let tmp = {
 		login: login,
 		password:password
@@ -134,7 +140,13 @@ function doSignup()
 	let password = document.getElementById("signupPass").value;
 //	var hash = md5( password );
 	
-	document.getElementById("singupResult").innerHTML = "";
+	//if(!validSignup(firstName, lastName, login, password) )
+	//{
+	//	document.getElementById("signupResult").innerHTML = "Invalid Signup";
+	//	return;
+	//}
+	
+	document.getElementById("signupResult").innerHTML = "";
 	
 	let tmp = {
 		firstName: firstName,
@@ -297,6 +309,29 @@ function goLogin()
 	sbut.style.top = "400px";
 }
 
+function validLogin(user, pass)
+{
+	if(user == "") 
+	{
+		console.log("Username is blank");
+		return false;
+	}
+	else 
+	{
+		
+	}
+	
+	if(pass == "") 
+	{
+		console.log("Password is blank");
+		return false;
+	}
+	else
+	{
+		
+	}
+}
+
 function goSignup()
 {
 	var log = document.getElementById("loginForm");
@@ -308,4 +343,47 @@ function goSignup()
 	sign.style.top = "-125px";
 	lbut.style.top = "400px";
 	sbut.style.top = "500px";
+}
+
+function validSignup(fname, lname, user, pass)
+{
+	if(fname == "") 
+	{
+		console.log("First name is blank");
+		return false;
+	}
+	else 
+	{
+		
+	}
+	
+	if(lname == "") 
+	{
+		console.log("Last name is blank");
+		return false;
+	}
+	else
+	{
+		
+	}
+	
+	if(user == "") 
+	{
+		console.log("Username is blank");
+		return false;
+	}
+	else 
+	{
+		
+	}
+	
+	if(pass == "") 
+	{
+		console.log("Password is blank");
+		return false;
+	}
+	else
+	{
+		
+	}
 }
