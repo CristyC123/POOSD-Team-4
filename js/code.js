@@ -140,7 +140,7 @@ function doSignup()
 		firstName: firstName,
 		lastName: lastName,
 		login: login,
-		password: password;
+		password: password
 	};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
