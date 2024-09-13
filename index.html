@@ -5,6 +5,7 @@
 		<script type="text/javascript" src="js/code.js"></script>
 		<link href="css/styles.css" rel="stylesheet">	
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link type="image/x-icon" href="/images/favicon.ico" rel="icon">
 	</head>
 	
 	<body>
@@ -20,25 +21,30 @@
 		
 		<div id="loginDiv">
 			<span id="inner-title">Log In or Sign Up</span>
-				<form style="top: 0px" class="form" id="loginForm">
-					<input type="username" id="loginUser" placeholder="Username" /><br />
-					<input type="password" id="loginPass" placeholder="Password"/><br />
-					<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
-				</form>
-				
-				<button style="top: 400px" type="button" id="goSignupButton" class="buttons" onclick="goSignup();"> Sign Up </button>
-				
-				<form style="top: 400px" class="form" id="signupForm">
-					<input type="firstname" id="signupFName" placeholder="First Name" /><br />
-					<input type="lastname" id="signupLName" placeholder="Last Name"/><br />
-					<input type="username" id="signupUser" placeholder="Username" /><br />
-					<input type="password" id="signupPass" placeholder="Password"/><br />
-					<button type="button" id="signupButton" class="buttons" onclick="doSignup();"> Sign Up </button>
-				</form>
-				
-				<button style="top: 500px" type="button" id="goLoginButton" class="buttons" onclick="goLogin();"> Login </button>
+			<form style="top: 0px" class="form" id="loginForm">
+				<input type="username" id="loginUser" placeholder="Username" /><br />
+				<input type="password" id="loginPass" placeholder="Password"/><br />
+				<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
+			</form>
+			
+			<button style="top: 400px" type="button" id="goSignupButton" class="buttons" onclick="goSignup();"> Sign Up </button>
+			
+			<form style="top: 400px" class="form" id="signupForm">
+				<input type="firstname" id="signupFName" placeholder="First Name" /><br />
+				<input type="lastname" id="signupLName" placeholder="Last Name"/><br />
+				<input type="username" id="signupUser" placeholder="Username" /><br />
+				<input type="password" id="signupPass" placeholder="Password"/><br />
+				<button type="button" id="signupButton" class="buttons" onclick="doSignup();"> Sign Up </button>
+			</form>
+			
+			<button style="top: 500px" type="button" id="goLoginButton" class="buttons" onclick="goLogin();"> Login </button>
+			
 			<span id="loginResult"></span>		
 			<span id="signupResult"></span>	
+		</div>
+		
+		<div id="linkBox">
+			<a href="https://github.com/CristyC123/POOSD-Team-4" id="github" target="_blank"> Dive In</a>
 		</div>
 	</body>
 </html>

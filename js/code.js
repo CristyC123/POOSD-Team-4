@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let regex = /(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}$/;
 
 /**
  * Creates and sends an XMLHttpRequest object
@@ -91,11 +92,11 @@ function doLogin()
 	let password = document.getElementById("loginPass").value;
 //	var hash = md5( password );
 	
-	//if(!validLogin(login, password))
-	//{
-	//	document.getElementById("loginResult").innerHTML = "Invalid Login";
-	//	return;
-	//}
+	if(!validLogin(login, password))
+	{
+		document.getElementById("loginResult").innerHTML = "Invalid Login";
+		return;
+	}
 	
 	document.getElementById("loginResult").innerHTML = "";
 	
@@ -140,11 +141,11 @@ function doSignup()
 	let password = document.getElementById("signupPass").value;
 //	var hash = md5( password );
 	
-	//if(!validSignup(firstName, lastName, login, password) )
-	//{
-	//	document.getElementById("signupResult").innerHTML = "Invalid Signup";
-	//	return;
-	//}
+	if(!validSignup(firstName, lastName, login, password) )
+	{
+		document.getElementById("signupResult").innerHTML = "Invalid Signup";
+		return;
+	}
 	
 	document.getElementById("signupResult").innerHTML = "";
 	
@@ -154,18 +155,28 @@ function doSignup()
 		login: login,
 		password: password
 	};
-//	var tmp = {login:login,password:hash};
+	
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Signup.' + extension;
 	
 	xhr(url, jsonPayload, "signupResult", () => {
+		if(this.status == 409)
+		{
+			document.getElementById("signupResult").innerHTML = "User already exists";
+			console.log("Sign up failed since user already exists");
+			alert("This user already exists please login");
+			return;
+		}
+		
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			let jsonObject = JSON.parse( xhr.responseText );
-			
+			userId = jsonObject.id;
 			firstName = jsonObject.firstName;
 			lastName = jsonObject.lastName;
+			
+			document.getElementById("signupResult").innerHTML = "User added";
 			
 			saveCookie();
 
@@ -253,6 +264,8 @@ function searchContacts()
  */
 function deleteContact()
 {
+	if(!(confirm("Are you sure you want to delete this contact?"))) return;
+	
 	let delContact = document.getElementById("contactText").value;
 	document.getElementById("contactDeleteResult").innerHTML = "";
 	
@@ -296,6 +309,8 @@ function editContact()
 	});
 }
 
+
+//Switches the displayed form to login from sign up
 function goLogin()
 {
 	var log = document.getElementById("loginForm");
@@ -309,29 +324,49 @@ function goLogin()
 	sbut.style.top = "400px";
 }
 
+//Checks if the login info is valid
 function validLogin(user, pass)
 {
 	if(user == "") 
 	{
 		console.log("Username is blank");
+		alert("Please input a username to login");
 		return false;
 	}
 	else 
 	{
+		if(regex.test(user) == false)
+		{
+			console.log("Username is invalid");
+			alert("Please input a valid username to login");
+			return false;
+		}
 		
+		console.log("Username is valid");
 	}
 	
 	if(pass == "") 
 	{
 		console.log("Password is blank");
+		alert("Please input a password to login");
 		return false;
 	}
 	else
 	{
+		if(regex.test(pass) == false)
+		{
+			console.log("Password is invalid");
+			alert("Please input a valid password to login");
+			return false;
+		}
 		
+		console.log("Password is valid");
 	}
+	
+	return true;
 }
 
+//Switches the displayed form to sign up from login
 function goSignup()
 {
 	var log = document.getElementById("loginForm");
@@ -345,45 +380,80 @@ function goSignup()
 	sbut.style.top = "500px";
 }
 
+//Checks if the sign up info is valid
 function validSignup(fname, lname, user, pass)
 {
 	if(fname == "") 
 	{
 		console.log("First name is blank");
+		alert("Please input a first name to sign up");
 		return false;
 	}
 	else 
 	{
+		if(regex.test(fname) == false)
+		{
+			console.log("First name is invalid");
+			alert("Please input a valid first name to sign up");
+			return false;
+		}
 		
+		console.log("First name is valid");
 	}
 	
 	if(lname == "") 
 	{
 		console.log("Last name is blank");
+		alert("Please input a last name to sign up");
 		return false;
 	}
 	else
 	{
+		if(regex.test(lname) == false)
+		{
+			console.log("Last name is invalid");
+			alert("Please input a valid last name to sign up");
+			return false;
+		}
 		
+		console.log("Last name is valid");
 	}
 	
 	if(user == "") 
 	{
 		console.log("Username is blank");
+		alert("Please input a username to sign up");
 		return false;
 	}
 	else 
 	{
+		if(regex.test(user) == false)
+		{
+			console.log("Username is invalid");
+			alert("Please input a valid username to sign up");
+			return false;
+		}
 		
+		console.log("Username is valid");
 	}
 	
 	if(pass == "") 
 	{
 		console.log("Password is blank");
+		alert("Please input a password to sign up");
 		return false;
 	}
 	else
 	{
+		if(regex.test(pass) == false)
+		{
+			console.log("Password is invalid");
+			alert("Please input a valid password to sign up");
+			return false;
+		}
 		
+		console.log("Password is valid");
 	}
+	
+	return true;
 }
