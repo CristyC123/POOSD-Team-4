@@ -102,18 +102,24 @@ function doLogin()
 	
 	let tmp = {
 		login: login,
-		password:password
+		password: password
 	};
 //	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Login.' + extension;
 
-	xhr(url, jsonPayload, "loginResult", () => {
+	xhr(url, jsonPayload, "loginResult", function () {
+		console.log(this.readyState + " " + this.status);
 		if (this.readyState == 4 && this.status == 200) 
 		{
-			let jsonObject = JSON.parse( xhr.responseText );
+			console.log(this.responseText);
+			let jsonObject = JSON.parse( this.responseText );
 			userId = jsonObject.id;
+
+			if( !userId ) {
+				document.getElementById("loginResult").innerHTML = "Connection could not be resolved. Please try again soon.";
+			}
 	
 			if( userId < 1 )
 			{		
@@ -160,7 +166,7 @@ function doSignup()
 	
 	let url = urlBase + '/Signup.' + extension;
 	
-	xhr(url, jsonPayload, "signupResult", () => {
+	xhr(url, jsonPayload, "signupResult", function() {
 		if(this.status == 409)
 		{
 			document.getElementById("signupResult").innerHTML = "User already exists";
@@ -213,7 +219,7 @@ function addContact()
 
 	let url = urlBase + '/Add.' + extension;
 
-	xhr(url, jsonPayload, "contactAddResult", () => {
+	xhr(url, jsonPayload, "contactAddResult", function() {
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			document.getElementById("contactAddResult").innerHTML = "Contact has been added";
@@ -239,7 +245,7 @@ function searchContacts()
 	
 	let url = urlBase + '/Search.' + extension;
 
-	xhr(url, jsonPayload, "contactSearchResult", () => {
+	xhr(url, jsonPayload, "contactSearchResult", function() {
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
@@ -277,7 +283,7 @@ function deleteContact()
 	
 	let url = urlBase + '/Delete.' + extension;
 
-	xhr(url, jsonPayload, "contactDeleteResult", () => {
+	xhr(url, jsonPayload, "contactDeleteResult", function() {
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
@@ -301,7 +307,7 @@ function editContact()
 
 	let url = urlBase + '/Edit.' + extension;
 
-	xhr(url, jsonPayload, "contactEditResult", () => {
+	xhr(url, jsonPayload, "contactEditResult", function() {
 		if (this.readyState == 4 && this.status == 200)
 		{
 			document.getElementById("contactEditResult").innerHTML = "Contact has been edited";
