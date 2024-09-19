@@ -183,7 +183,7 @@ function doSignup()
 		
 		if (this.readyState == 4 && this.status == 200) 
 		{
-			let jsonObject = JSON.parse( xhr.responseText );
+			let jsonObject = JSON.parse( this.responseText );
 			userId = jsonObject.id;
 			firstName = jsonObject.firstName;
 			lastName = jsonObject.lastName;
@@ -255,7 +255,7 @@ function searchContacts()
 		if (this.readyState == 4 && this.status == 200) 
 		{
 			document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
-			let jsonObject = JSON.parse( xhr.responseText );
+			let jsonObject = JSON.parse( this.responseText );
 			
 			for( let i=0; i<jsonObject.results.length; i++ )
 			{
