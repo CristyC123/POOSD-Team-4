@@ -21,12 +21,12 @@
 		
 		<div id="loginDiv">
 			<span id="inner-title">Log In or Sign Up</span>
-			<form style="top: 0px" class="form" id="loginForm">
-				<input type="username" id="loginUser" placeholder="Username" /><br />
+			<form onsubmit="return doLogin();" style="top: 0px" class="form" id="loginForm">
+				<input type="username" id="loginUser" placeholder="Username"/><br />
 				<input type="password" id="loginPass" placeholder="Password"/><br />
 				<span id="loginResult"></span>
-				<span id="signupResult"></span>
 				<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
+				<input type="submit" id="submitButton" />
 			</form>
 			
 			<button style="top: 400px" type="button" id="goSignupButton" class="buttons" onclick="goSignup();"> Sign Up </button>
@@ -35,7 +35,8 @@
 				<input type="firstname" id="signupFName" placeholder="First Name" /><br />
 				<input type="lastname" id="signupLName" placeholder="Last Name"/><br />
 				<input type="username" id="signupUser" placeholder="Username" /><br />
-				<input type="password" id="signupPass" placeholder="Password"/><br />
+				<input type="password" id="signupPass" placeholder="Password" autocomplete="current-password"/><br />
+				<span id="signupResult"></span>
 				<button type="button" id="signupButton" class="buttons" onclick="doSignup();"> Sign Up </button>
 			</form>
 			

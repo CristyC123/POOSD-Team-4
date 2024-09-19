@@ -117,14 +117,15 @@ function doLogin()
 			let jsonObject = JSON.parse( this.responseText );
 			userId = jsonObject.id;
 
-			if( !userId ) {
+			if( userId === undefined ) {
 				document.getElementById("loginResult").innerHTML = "Connection could not be resolved. Please try again soon.";
+				return false;
 			}
 	
 			if( userId < 1 )
 			{		
 				document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-				return;
+				return false;
 			}
 	
 			firstName = jsonObject.firstName;
@@ -139,6 +140,7 @@ function doLogin()
 			document.getElementById("loginResult").innerHTML = "Connection could not be resolved. Please try again later.";
 		}
 	});
+	return false;
 }
 /**
  * Sign up new user to server
