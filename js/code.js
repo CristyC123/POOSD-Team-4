@@ -1,4 +1,4 @@
-const urlBase = 'http://146.190.65.219/LAMPAPI';
+const urlBase = 'http://www.team4project.org/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -133,6 +133,10 @@ function doLogin()
 			saveCookie();
 
 			window.location.href = "contacts.html";
+		}
+		else if (this.readyState == 4)
+		{
+			document.getElementById("loginResult").innerHTML = "Connection could not be resolved. Please try again later.";
 		}
 	});
 }
@@ -389,7 +393,7 @@ function goSignup()
 //Checks if the sign up info is valid
 function validSignup(fname, lname, user, pass)
 {
-	if(fname == "") 
+	if(fname === "") 
 	{
 		console.log("First name is blank");
 		alert("Please input a first name to sign up");
@@ -397,7 +401,7 @@ function validSignup(fname, lname, user, pass)
 	}
 	else 
 	{
-		if(regex.test(fname) == false)
+		if(regex.test(fname) === false)
 		{
 			console.log("First name is invalid");
 			alert("Please input a valid first name to sign up");
@@ -415,7 +419,7 @@ function validSignup(fname, lname, user, pass)
 	}
 	else
 	{
-		if(regex.test(lname) == false)
+		if(regex.test(lname) === false)
 		{
 			console.log("Last name is invalid");
 			alert("Please input a valid last name to sign up");
@@ -425,7 +429,7 @@ function validSignup(fname, lname, user, pass)
 		console.log("Last name is valid");
 	}
 	
-	if(user == "") 
+	if(user === "") 
 	{
 		console.log("Username is blank");
 		alert("Please input a username to sign up");
@@ -433,7 +437,7 @@ function validSignup(fname, lname, user, pass)
 	}
 	else 
 	{
-		if(regex.test(user) == false)
+		if(regex.test(user) === false)
 		{
 			console.log("Username is invalid");
 			alert("Please input a valid username to sign up");
@@ -443,7 +447,7 @@ function validSignup(fname, lname, user, pass)
 		console.log("Username is valid");
 	}
 	
-	if(pass == "") 
+	if(pass === "") 
 	{
 		console.log("Password is blank");
 		alert("Please input a password to sign up");
@@ -451,7 +455,7 @@ function validSignup(fname, lname, user, pass)
 	}
 	else
 	{
-		if(regex.test(pass) == false)
+		if(regex.test(pass) === false)
 		{
 			console.log("Password is invalid");
 			alert("Please input a valid password to sign up");

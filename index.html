@@ -24,6 +24,8 @@
 			<form style="top: 0px" class="form" id="loginForm">
 				<input type="username" id="loginUser" placeholder="Username" /><br />
 				<input type="password" id="loginPass" placeholder="Password"/><br />
+				<span id="loginResult"></span>
+				<span id="signupResult"></span>
 				<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
 			</form>
 			
@@ -38,9 +40,6 @@
 			</form>
 			
 			<button style="top: 500px" type="button" id="goLoginButton" class="buttons" onclick="goLogin();"> Login </button>
-			
-			<span id="loginResult"></span>		
-			<span id="signupResult"></span>	
 		</div>
 		
 		<div id="linkBox">
