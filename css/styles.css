@@ -293,7 +293,8 @@ select
 	text-align: center;
 }
 
-.contactButtons:hover{
+.contactButtons:hover
+{
     background-color: #e9bf16;
     color: #1f3bE0;
     opacity: 75%;
@@ -304,7 +305,16 @@ select
     margin-top: 2%;
     margin-bottom: 2%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchBarWrapper 
+{
+    display: flex;
     justify-content: center;
+    width: 100%;
+    margin-left: 10%;
 }
 
 #searchBar
@@ -326,6 +336,12 @@ select
     width: 70px;
 } 
 
+#addBtn
+{
+    margin-right: 10%;
+    padding: 5px 10px;
+}
+
 #searchInput 
 {
     width: 70%;
@@ -339,9 +355,38 @@ select
     border: 1px solid #2c95d3;
     margin-bottom: 10px;
     padding: 10px;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+}
+
+.contact-row:hover {
+    background-color: #0090e4;
+}
+
+.contact-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.contact-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.toggle-indicator {
+    font-size: 24px;
+}
+
+.contact-details {
+    display: none;
+    margin-top: 10px;
+}
+
+.contact-row.expanded .contact-details {
+    display: flex;
+    justify-content: space-between;
 }
 
 .contact-info 
@@ -362,11 +407,9 @@ select
     padding-right: 10%;
 }
 
-/* .edit-btn, .delete-btn 
-{
-    margin-left: 10px;
-    padding: 5px 10px;
-} */
+.edit-btn, .delete-btn {
+    margin-top: 5px;
+}
 
 #logoutBtn 
 {
@@ -376,15 +419,6 @@ select
     padding: 5px 10px;
 }
 
-#addBtn
-{
-    position: absolute;
-    top: 155px;
-    right: 160px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
 #submitButton
 {
     visibility: hidden;
@@ -392,14 +426,12 @@ select
 
 #scrollToTopBtn
 {
+    display: none;
     position: fixed;
     bottom: 20px;
     right: 20px;
     padding: 10px;
+    cursor: pointer;
 }
 
-#contactText
-{
-    font-size: 24px;
-    font-weight: bold;
-}
+
