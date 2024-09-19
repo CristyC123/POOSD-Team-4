@@ -164,9 +164,10 @@ function doSignup() {
 			alert("This user already exists please login");
 			return;
 		}
-
-		if (this.readyState == 4 && this.status == 200) {
-			let jsonObject = JSON.parse(xhr.responseText);
+		
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			let jsonObject = JSON.parse( this.responseText );
 			userId = jsonObject.id;
 			firstName = jsonObject.firstName;
 			lastName = jsonObject.lastName;
@@ -233,9 +234,10 @@ function searchContacts() {
 	xhr(url, jsonPayload, "contactSearchResult", function () {
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
-			let jsonObject = JSON.parse(xhr.responseText);
-
-			for (let i = 0; i < jsonObject.results.length; i++) {
+			let jsonObject = JSON.parse( this.responseText );
+			
+			for( let i=0; i<jsonObject.results.length; i++ )
+			{
 				contactList += jsonObject.results[i];
 				if (i < jsonObject.results.length - 1) {
 					contactList += "<br />\r\n";
