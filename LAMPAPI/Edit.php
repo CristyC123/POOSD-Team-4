@@ -2,10 +2,10 @@
 
     $inData = getRequestInfo();
 
-    $id = "";
-    $name = "";
-    $phone = "";
-    $email = "";
+    $id = $inData["ID"];
+    $name = $inData["Name"];
+    $phone = $inData["Phone"];
+    $email = $inData["Email"];
     
     $conn = new mysqli("localhost", "api", "Team4Yay", "COP4331"); 	
 	if( $conn->connect_error )
@@ -15,9 +15,13 @@
 	else
 	{
         $stmt = $conn->prepare("UPDATE Contacts SET Name=?, Phone=?, Email=? WHERE ID=?");
-        $stmt->bind_param("ssss", $inData["id"], $inData["name"], $inData["phone"], $inData["email"]);
+        $stmt->bind_param("sssi", $name, $phone, $email, $id);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+            returnWithInfo($name, "", $id);
+        } else {
+            returnWithError("Unable to update contact.");
+        }
         
         $stmt->close();
 		$conn->close();

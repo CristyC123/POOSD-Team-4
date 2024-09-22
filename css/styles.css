@@ -433,3 +433,9 @@ select
     margin-left: 15%;
     margin-right: 15%;
 }
+
+.editable.editing {
+    background-color: #f0f0f0;
+    padding: 2px;
+    border: 1px solid #ccc;
+ }
