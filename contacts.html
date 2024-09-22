@@ -6,53 +6,54 @@
 	<script type="text/javascript" src="js/code.js"></script>
 	<link href="css/styles.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	<link type="image/x-icon" href="/images/favicon.ico" rel="icon">
-
+	<link type="image/x-icon" href="images/favicon.ico" rel="icon">
 </head>
 
 <body>
-	<div id="titleBox">
-		<h1 id="title">Contacts</h1>
+	<div class="box" id="titleBox">
+		<h1 class="text" id="title">Contacts</h1>
 	</div>
-
-	<div id="titleBox2"> </div>
-
-	<button class="contactButtons" id="logoutBtn">Logout</button>
-
+	
+	<div class="box" id="titleBox2"> </div>
+	
+	<button class="text contactButtons" id="logoutBtn">Logout</button>
+	
 	<div class="container">
 		<div id="searchContainer">
 			<div id="searchBarWrapper">
 				<input type="text" id="searchBar" placeholder="Search">
-				<button id="searchButton" class="contactButtons">Search</button>
+				<button class="text contactButtons" id="searchButton">Search</button>
 			</div>
-			<button id="addBtn" class="contactButtons">Add</button>
 		</div>
-
-
-
+		
+		<button class="text contactButtons" id="addBtn">Add</button>
+		
 		<div id="contactList">
 			<div class="contact-row collapsed">
 				<div class="contact-header">
 					<span class="contact-name">First Last</span>
+					
 					<span class="toggle-indicator">▼</span>
 				</div>
+				
 				<div class="contact-details">
 					<div class="contact-info">
 						<div>email</div>
 						<div>phone #</div>
 						<div>date created</div>
 					</div>
+					
 					<div class="contact-actions">
-						<button class="contactButtons edit-btn">Edit</button>
-						<button class="contactButtons delete-btn">Delete</button>
+						<button class="text contactButtons edit-btn">Edit</button>
+						<button class="text contactButtons delete-btn">Delete</button>
 					</div>
-				</div>
+			  	</div>
 			</div>
 		</div>
 	</div>
-
-	<button id="scrollToTopBtn" onclick="scrollToTop()" class="contactButtons">Scroll to Top</button>
-
+	
+	<button id="scrollToTopBtn" onclick="scrollToTop()" class="text contactButtons">Scroll to Top</button>
+	
 </body>
 
 </html>
