@@ -418,7 +418,8 @@ select
     cursor: pointer;
 }
 
-.contact-row input {
+.contact-row input 
+{
     font-size: 16px;
     padding: 5px;
     margin: 5px;
@@ -427,3 +428,8 @@ select
     border: 1px solid #ccc;
 }
 
+#newContactBox
+{
+    margin-left: 15%;
+    margin-right: 15%;
+}

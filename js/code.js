@@ -436,90 +436,51 @@ function doLogout()
 /**
  * Adds contact to user's contact list
  */
+function toggleNewContactBox() {
+	const newContactBox = document.getElementById("newContactBox");
+	newContactBox.style.display = newContactBox.style.display === "none" ? "block" : "none";
+}
+
 function addContact() {
-   let contactName = prompt("Enter Contact Name:");
-   let contactEmail = prompt("Enter Contact Email:");
-   let contactPhone = prompt("Enter Contact Phone:");
+	let contactName = document.getElementById("newContactName").value;
+	let contactEmail = document.getElementById("newContactEmail").value;
+	let contactPhone = document.getElementById("newContactPhone").value;
 
-   let tmp = {
-      name: contactName,
-      email: contactEmail,
-      phone: contactPhone,
-      userId: userId,
-   };
+	if (!contactName || !contactEmail || !contactPhone) {
+		 alert("Please fill in all fields");
+		 return;
+	}
 
-   let jsonPayload = JSON.stringify(tmp);
+	let tmp = {
+		 name: contactName,
+		 email: contactEmail,
+		 phone: contactPhone,
+		 userId: userId,
+	};
 
-   let url = urlBase + "/Add." + extension;
+	let jsonPayload = JSON.stringify(tmp);
 
-   xhr(url, jsonPayload, "", function () {
-      if (this.readyState == 4 && this.status == 200) {
-         let jsonObject = JSON.parse(this.responseText);
+	let url = urlBase + "/Add." + extension;
 
-         if (jsonObject.error === "") {
-            let newRow = `
-                    <div class="contact-row expanded" id="contact-${newId}">
-                        <div class="contact-header">
-                            <input class="contact-name" type="text" value="${contactName}" />
-                            <span class="toggle-indicator">
-									 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  									 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-									 </svg>
-									 </span>
-                        </div>
-                        <div class="contact">
-                            <div class="contact-info">
-                                <div id="emailDiv">
-										  		<svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    class="size-6"
-                                		>
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                                    />
-                                		</svg>
-                                    <input type="text" value="${contactEmail}" />
-                                </div>
-                                <div id="phoneDiv">
-										  		<svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="size-6"
-                                		>
-                                    <path
-                                        d="M8 16.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"
-                                    />
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M4 4a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V4Zm4-1.5v.75c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75V2.5h1A1.5 1.5 0 0 1 14.5 4v12a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 16V4A1.5 1.5 0 0 1 7 2.5h1Z"
-                                        clip-rule="evenodd"
-                                    />
-                                		</svg>
-                                    <input type="text" value="${contactPhone}" />
-                                </div>
-                            </div>
-                            <div class="contact-bottom">
-                                <div id="dateCreated">${new Date().toLocaleString()}</div>
-                                <div class="contact-actions">
-                                    <button class="contactButtons edit-btn" onclick="editContact(${newId})">Edit</button>
-                                    <button class="contactButtons delete-btn" onclick="deleteContact(${newId})">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-            document
-               .getElementById("contactList")
-               .insertAdjacentHTML("beforeend", newRow);
-         } 
-      }
-   });
+	xhr(url, jsonPayload, "", function () {
+		 if (this.readyState == 4 && this.status == 200) {
+			  let jsonObject = JSON.parse(this.responseText);
+			  if (jsonObject.error === "") {
+					// Clear input fields
+					document.getElementById("newContactName").value = "";
+					document.getElementById("newContactEmail").value = "";
+					document.getElementById("newContactPhone").value = "";
+
+					// Hide the new contact box
+					document.getElementById("newContactBox").style.display = "none";
+
+					// Refresh the contact list
+					searchContacts();
+			  } else {
+					alert(jsonObject.error);
+			  }
+		 }
+	});
 }
 
 /**
@@ -541,54 +502,55 @@ function searchContacts() {
    let url = urlBase + "/Search." + extension;
 
    xhr(url, jsonPayload, "", function () {
-      if (this.readyState == 4 && this.status == 200) {
-         let jsonObject = JSON.parse(this.responseText);
+		if (this.readyState == 4 && this.status == 200) {
+			 let jsonObject = JSON.parse(this.responseText);
 
-         document.getElementById("contactList").innerHTML = "";
+			 document.getElementById("contactList").innerHTML = "";
 
-         for (let i = 0; i < jsonObject.results.length; i++) {
-            let contact = jsonObject.results[i];
+			 for (let i = 0; i < jsonObject.results.length; i++) {
+				  let contact = jsonObject.results[i];
 
-            contactList += `
-            <div class="contact-row collapsed" id="contact-${contact.ID}">
-               <div class="contact-header">
-                  <span class="contact-name">${contact.Name}</span>
-                  <span class="toggle-indicator">
-							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  							<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-							</svg>
-						</span>
-               </div>
-                    <div class="contact">
-                        <div class="contact-info">
-                            <div id="emailDiv">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                                 </svg>       
-                                 <div id="email">${contact.Email}</div>                     
-                            </div>
-                            <div id="phoneDiv">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6">
-                                    <path d="M8 16.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z" />
-                                    <path fill-rule="evenodd" d="M4 4a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V4Zm4-1.5v.75c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75V2.5h1A1.5 1.5 0 0 1 14.5 4v12a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 16V4A1.5 1.5 0 0 1 7 2.5h1Z" clip-rule="evenodd" />
-                                 </svg>    
-                                 <div id="phone">${contact.Phone}</div>                          
-                            </div>
-                        </div>
-                        <div class="contact-bottom">
-                            <div id="dateCreated">${contact.CreatedAt}</div>
-                            <div class="contact-actions">
-                                <button class="contactButtons edit-btn" onclick="editContact(${contact.ID})">Edit</button>
-                                <button class="contactButtons delete-btn" onclick="deleteContact(${contact.ID})">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-         }
+				  let contactHtml = `
+						<div class="contact-row collapsed" id="contact-${contact.ID}">
+							 <div class="contact-header">
+								  <span class="contact-name">${contact.Name}</span>
+								  <span class="toggle-indicator">
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+										</svg>
+								  </span>
+							 </div>
+							 <div class="contact">
+								  <div class="contact-info">
+										<div id="emailDiv">
+											 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+												  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+											 </svg>       
+											 <div id="email">${contact.Email}</div>                     
+										</div>
+										<div id="phoneDiv">
+											 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6">
+												  <path d="M8 16.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z" />
+												  <path fill-rule="evenodd" d="M4 4a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V4Zm4-1.5v.75c0 .414.336.75.75.75h2.5a.75.75 0 0 0 .75-.75V2.5h1A1.5 1.5 0 0 1 14.5 4v12a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 16V4A1.5 1.5 0 0 1 7 2.5h1Z" clip-rule="evenodd" />
+											 </svg>    
+											 <div id="phone">${contact.Phone}</div>                          
+										</div>
+								  </div>
+								  <div class="contact-bottom">
+										<div id="dateCreated">${contact.CreatedAt}</div>
+										<div class="contact-actions">
+											 <button class="contactButtons edit-btn" onclick="editContact(${contact.ID})">Edit</button>
+											 <button class="contactButtons delete-btn" onclick="deleteContact(${contact.ID})">Delete</button>
+										</div>
+								  </div>
+							 </div>
+						</div>
+				  `;
 
-         document.getElementById("contactList").innerHTML = contactList;
-      }
-   });
+				  document.getElementById("contactList").insertAdjacentHTML("beforeend", contactHtml);
+			 }
+		}
+  });
 }
 
 /**
@@ -607,15 +569,10 @@ function deleteContact(id) {
 
    xhr(url, jsonPayload, "", function () {
       if (this.readyState == 4 && this.status == 200) {
-         let jsonObject = JSON.parse(this.responseText);
-
-         if (jsonObject.error === "") {
-            document.getElementById(`contact-${id}`).remove();
-         }
+			searchContacts();
       }
    });
 
-   searchContacts();
 }
 
 /**
@@ -642,50 +599,28 @@ function editContact(id) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-   searchContacts();
-   const contactList = document.getElementById("contactList");
+	searchContacts();
+	const contactList = document.getElementById("contactList");
 
-   contactList.addEventListener("click", function (event) {
-      const contactRow = event.target.closest(".contact-row");
-      if (contactRow && !event.target.closest(".edit-btn, .delete-btn")) {
-         toggleContact(contactRow);
-      }
-   });
+	contactList.addEventListener("click", function (event) {
+		 const contactRow = event.target.closest(".contact-row");
+		 if (contactRow && !event.target.closest(".edit-btn, .delete-btn")) {
+			  toggleContact(contactRow);
+		 }
+	});
 
-   function toggleContact(row) {
-      row.classList.toggle("expanded");
-      row.classList.toggle("collapsed");
-      const toggleIndicator = row.querySelector(".toggle-indicator");
-      toggleIndicator.innerHTML = row.classList.contains("expanded")
-         ? `<svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
-         >
-            <path
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               d="m4.5 15.75 7.5-7.5 7.5 7.5"
-            />
-         </svg>`
-         : `<svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
-         >
-            <path
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               d="m19.5 8.25-7.5 7.5-7.5-7.5"
-            />
-         </svg>`;
-   }
+	function toggleContact(row) {
+		 row.classList.toggle("expanded");
+		 row.classList.toggle("collapsed");
+		 const toggleIndicator = row.querySelector(".toggle-indicator");
+		 toggleIndicator.innerHTML = row.classList.contains("expanded")
+			  ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+				  </svg>`
+			  : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+				  </svg>`;
+	}
 
    let scrollToTopBtn = document.getElementById("scrollToTopBtn");
 

@@ -24,7 +24,7 @@
 			<span class="text" id="inner-title">Log In or Sign Up</span>
 			<form onsubmit="return doLogin();" style="top: 0px" class="form" id="loginForm">
 				<input type="text" id="loginUser" placeholder="Username" onclick="resetInput(loginUser)"/> <br/>
-				<input type="text" id="loginPass" placeholder="Password" onclick="resetInput(loginPass)"/> <br/>
+				<input id="loginPass" placeholder="Password" type="password" onclick="resetInput(loginPass)"/> <br/>
 				<button type="button" id="loginButton" class="buttons text" onclick="doLogin();"> Login </button> <br/> <br/>
 				<span class="text" id="loginResult"></span>
 				<input type="submit" id="submitButton" />
@@ -36,7 +36,7 @@
 				<input type="text" id="signupFName" placeholder="First Name" onclick="resetInput(signupFName)"/> <br/>
 				<input type="text" id="signupLName" placeholder="Last Name" onclick="resetInput(signupLName)"/> <br/>
 				<input type="text" id="signupUser" placeholder="Username" onclick="resetInput(signupUser)"/> <br/>
-				<input type="text" id="signupPass" placeholder="Password" onclick="resetInput(signupPass)" autocomplete="current-password"/> <br/>
+				<input id="signupPass" placeholder="Password" type="password" onclick="resetInput(signupPass)" autocomplete="current-password"/> <br/>
 				<button type="button" id="signupButton" class="buttons text" onclick="doSignup();"> Sign Up </button> <br/> <br/>
 				<span class="text" id="signupResult"></span>
 				<input type="submit" id="submitButton" />

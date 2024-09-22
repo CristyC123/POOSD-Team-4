@@ -153,6 +153,18 @@ input[type="text"]
 	font-size: 25px;
 }
 
+input[type="password"]
+{
+	background-color: #f68456;
+	text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 3%;
+    font-family: 'Ubuntu', sans-serif;
+	border-radius: 15px;
+	font-size: 25px;
+}
+
 .invalidClass::-webkit-input-placeholder
 {
 	color: black;
