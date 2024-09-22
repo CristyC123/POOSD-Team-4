@@ -2,7 +2,7 @@
 
     $inData = getRequestInfo();
 
-    $userId = "";
+    $id = $inData["ID"];
 
     $conn = new mysqli("localhost", "api", "Team4Yay", "COP4331");
 	if( $conn->connect_error )
@@ -11,13 +11,13 @@
 	}
 	else
 	{
-        $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=?");
-        $stmt->bind_param("s", $inData["userId"]);
-	$stmt->execute();
+        	$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=?");
+        	$stmt->bind_param("i", $id);
+		$stmt->execute();
 
-        $stmt->close();
-		$conn->close();
-    }
+		$stmt->close();
+        	$conn->close();
+     	}
 
     function getRequestInfo()
 	{
@@ -32,14 +32,14 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		$retValue = '{"error":"' . $err . '"}';
+        	sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo( $message )
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
+		$retValue = '{"message":"' . $message . '", "error":""}';
+        	sendResultInfoAsJson( $retValue );
 	}
 
 ?>

@@ -171,9 +171,54 @@ select
     padding: 25px;
 }
 
+#contactTitleBox
+{
+	background-color: #046C78;
+	height: 50px;
+	width: 60%;
+	border: 3px solid #f68456;
+	border-bottom-width: 0px;
+	border-right-color: black;
+	box-shadow: 3px 3px 7px #f68456;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#contactTitleBox2
+{
+	background-color: #046C78;
+	height: 50px;
+	width: 90%;
+	margin-left: 3%;
+	margin-right: 5%;
+	border: 3px solid #f68456;
+	border-top-width: 0px;
+	border-bottom-color: black;
+	border-right-color: black;
+	box-shadow: 3px 6px 7px #f68456;
+ 
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 5px;
+}
+
+#contactTitle 
+{
+	display: inline-block;
+    font-size: 40px;
+    width: 100%;
+    margin-left: 10%;
+    text-align: left;
+    font-family: 'Ubuntu', sans-serif;
+    color: #f68456;
+}
+
 .contactButtons
 {
-    background-color: #046C78;
+    background-color: #0791A6;
+    color: #ffffff;
     font-size: 16px;
 	border: 2px solid black;
 	border-top-color: #f68456;
@@ -182,14 +227,13 @@ select
     padding: 5px;
     font-family: 'Ubuntu', sans-serif;
 	text-align: center;
+    border: none;
+    
 }
 
-.contactButtons:hover{
+.contactButtons:hover
+{
     background-color: #f68456;
-	border: 2px solid #f68456;
-	border-top-color: black;
-	border-left-color: black;
-    color: #046C78;
     opacity: 75%;
 }
 
@@ -204,10 +248,10 @@ select
 
 #searchBarWrapper
 {
-	display: flex;
-	justify-context: center;
-	width: 100%
-	margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: 15%;
 }
 
 #searchBar
@@ -218,9 +262,9 @@ select
 	border-left-color: #f68456;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
-    border-right: none;
+    border: none;
     height: 42.5px;
-    width: 30%;
+    width: 40%;
     padding-left: 10px;
 	font-size: 18px
 }
@@ -236,7 +280,8 @@ select
 
 #addBtn
 {
-    margin-right: 10%;
+    height: 42.5px;
+    margin-right: 15%;
     padding: 5px 10px;
 }
 
@@ -250,67 +295,109 @@ select
 
 .contact-row 
 {
-    background-color: #2c96d3ad;
-    border: 1px solid #2c95d3;
+    background-color: #fffffff1;
+    border: 2px solid #96d4e7;
+    border-radius: 10px;
     margin-bottom: 10px;
     padding: 10px;
 }
 
-.contact-row:hover
+.contact-row:hover 
 {
-	background-color: #0090e4;
+    background-color: #96d4e7;
 }
-	
-.contact-header
+
+.contact-header 
 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 10px;
 }
 
-.contact-name
+.contact-name 
 {
-    font-size: 24px;
+    
+    font-size: 30px;
     font-weight: bold;
+    font-family: 'Ubuntu', sans-serif;
 }
 
-.toggle-indicator
+.toggle-indicator 
 {
-    font-size: 24px;
+    color: 0791A6;
+    font-size: 15px;
 }
 
-.contact-details
+.contact 
 {
     display: none;
-    margin-top: 10px;
+    margin: 10px;
+    margin-top: 0px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
-.contact-row.expanded .contact-details 
+.contact-row.expanded .contact 
 {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .contact-info 
 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.size-6
+{
+    height: 20px;
+    width: 20px;
+}
+
+#emailDiv, #phoneDiv
+{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 20px;
+}
+
+#phoneDiv
+{
+    margin-left: 10%;
+}
+
+.contact-bottom
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#dateCreated
+{
+    display: flex;
+    align-items: flex-end;
+    font-size: 12px;
 }
 
 .contact-actions 
 {
-    display: flex;
-    flex-direction: column;
+    display: flex;  
 }
 
 #contactList
 {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
-.edit-btn, .delete-btn {
-    margin-top: 5px;
+.edit-btn, .delete-btn 
+{
+    margin: 5px;
+    padding: 5px 10px;
 }
 
 #logoutBtn 
@@ -327,12 +414,16 @@ select
     position: fixed;
     bottom: 20px;
     right: 20px;
-    padding: 10px;
-	cursor: pointer;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
-#contactText
-{
-    font-size: 24px;
-    font-weight: bold;
+.contact-row input {
+    font-size: 16px;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
+
