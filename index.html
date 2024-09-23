@@ -25,24 +25,24 @@
 			<form onsubmit="return doLogin();" style="top: 0px" class="form" id="loginForm">
 				<input type="text" id="loginUser" placeholder="Username" onclick="resetInput(loginUser)"/> <br/>
 				<input id="loginPass" placeholder="Password" type="password" onclick="resetInput(loginPass)"/> <br/>
-				<button type="button" id="loginButton" class="buttons text" onclick="doLogin();"> Login </button> <br/> <br/>
+				<button type="button" id="loginButton" class="buttons buttonText" onclick="doLogin();"> Login </button> <br/> <br/>
 				<span class="text" id="loginResult"></span>
 				<input type="submit" id="submitButton" />
 			</form>
 			
-			<button style="top: 500px" type="button" id="goSignupButton" class="buttons text" onclick="goSignup();"> Sign Up </button>
+			<button style="top: 500px" type="button" id="goSignupButton" class="buttons buttonText" onclick="goSignup();"> Go to Sign Up </button>
 			
 			<form onsubmit="return doLogin();" style="top: 400px" class="form" id="signupForm">
 				<input type="text" id="signupFName" placeholder="First Name" onclick="resetInput(signupFName)"/> <br/>
 				<input type="text" id="signupLName" placeholder="Last Name" onclick="resetInput(signupLName)"/> <br/>
 				<input type="text" id="signupUser" placeholder="Username" onclick="resetInput(signupUser)"/> <br/>
 				<input id="signupPass" placeholder="Password" type="password" onclick="resetInput(signupPass)" autocomplete="current-password"/> <br/>
-				<button type="button" id="signupButton" class="buttons text" onclick="doSignup();"> Sign Up </button> <br/> <br/>
+				<button type="button" id="signupButton" class="buttons buttonText" onclick="doSignup();"> Sign Up </button> <br/> <br/>
 				<span class="text" id="signupResult"></span>
 				<input type="submit" id="submitButton" />
 			</form>
 			
-			<button style="top: 600px" type="button" id="goLoginButton" class="buttons text" onclick="goLogin();"> Login </button>
+			<button style="top: 600px" type="button" id="goLoginButton" class="buttons buttonText" onclick="goLogin();"> Go to Login </button>
 		</div>
 		
 		<div class="box" id="linkBox">

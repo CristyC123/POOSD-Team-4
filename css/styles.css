@@ -5,93 +5,6 @@ body
 	background-blend-mode: multiply;
 }
 
-.text
-{
-	display: inline-block;
-	text-align: center;
-	font-family: 'Ubuntu', sans-serif;
-    color: #f68456;
-}
-
-.box 
-{
-	background-color: #046C78;
-	background-blend-mode: multiply;
-	background-size: contain;
-	border: 3px solid #f68456;
-	height: 50px;
-	width: 65px;
-	box-shadow: 5px 5px #f68456;
-}
-
-.buttons
-{
-    background-color: #046C78;
-    font-size: 20px;
-	border: 2px solid black;
-	border-top-color: #f68456;
-	border-left-color: #f68456;
-    border-radius: 20px;
-    width: 30%;
-	margin: 0;
-	position: absolute;
-	left: 35%;
-    padding: 5px;
-}
-
-.buttons:hover{
-    background-color: #f68456;
-	border: 2px solid #f68456;
-	border-top-color: black;
-	border-left-color: black;
-    color: #046C78;
-    opacity: 75%;
-}
-
-#titleBox
-{
-	background-image: url("../images/box-background-wave-top.jpg");
-	width: 60%;
-	border-bottom-width: 0px;
-	border-right-color: black;
-}
-
-#titleBox2
-{
-	background-image: url("../images/box-background-wave-bottom.jpg");
-	width: 90%;
-	margin-left: 3%;
-	margin-right: 5%;
-	border-top-width: 0px;
-	border-bottom-color: black;
-	border-right-color: black;
-}
-
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-#accessUIDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
-#title 
-{
-    font-size: 40px;
-    width: 100%;
-    margin-left: 10%;
-    text-align: left;
-}
-
 #searchText
 {
 	font-size: 30px;
@@ -110,59 +23,6 @@ body
     text-align: center;
 }
 
-select
-{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-#contactSearchResult
-{
-    display: none;
-}
-
-#contactAddResult
-{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-#contactDeleteResult
-{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-#contactEditResult
-{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
 #container
 {
     font-size: 30px;
@@ -174,14 +34,20 @@ select
 #contactTitleBox
 {
 	background-color: #046C78;
+
+    background-blend-mode: multiply;
+	background-size: contain;
+
+    background-image: url("../images/box-background-wave-top.jpg");
+
 	height: 50px;
 	width: 60%;
 	border: 3px solid #f68456;
 	border-bottom-width: 0px;
 	border-right-color: black;
-	box-shadow: 3px 3px 7px #f68456;
+	box-shadow: 4px 4px 3px#f683568e;
 
-    border-top-left-radius: 5px;
+    border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -189,6 +55,12 @@ select
 #contactTitleBox2
 {
 	background-color: #046C78;
+
+    background-blend-mode: multiply;
+	background-size: contain;
+
+    background-image: url("../images/box-background-wave-bottom.jpg");
+
 	height: 50px;
 	width: 90%;
 	margin-left: 3%;
@@ -197,11 +69,11 @@ select
 	border-top-width: 0px;
 	border-bottom-color: black;
 	border-right-color: black;
-	box-shadow: 3px 6px 7px #f68456;
+	box-shadow: 4px 4px 3px#f683568e;
  
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 10px;
 }
 
 #contactTitle 
@@ -220,21 +92,16 @@ select
     background-color: #0791A6;
     color: #ffffff;
     font-size: 16px;
-	border: 2px solid black;
-	border-top-color: #f68456;
-	border-left-color: #f68456;
     border-radius: 20px;
     padding: 5px;
     font-family: 'Ubuntu', sans-serif;
 	text-align: center;
     border: none;
-    
 }
 
 .contactButtons:hover
 {
     background-color: #f68456;
-    opacity: 75%;
 }
 
 #searchContainer
@@ -256,10 +123,6 @@ select
 
 #searchBar
 {
-	background-color: #f68456;
-	border: 2px solid black;
-	border-top-color: #f68456;
-	border-left-color: #f68456;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     border: none;
@@ -326,7 +189,6 @@ select
 .toggle-indicator 
 {
     color: 0791A6;
-    font-size: 15px;
 }
 
 .contact 
@@ -394,7 +256,7 @@ select
     padding-right: 15%;
 }
 
-.edit-btn, .delete-btn 
+.edit-btn, .delete-btn, .save-btn 
 {
     margin: 5px;
     padding: 5px 10px;
@@ -420,12 +282,13 @@ select
 
 .contact-row input 
 {
+    background-color: #CFD3D1;
     font-size: 16px;
     padding: 5px;
     margin: 5px;
     width: 100%;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #0791A6;
 }
 
 #newContactBox
@@ -434,8 +297,12 @@ select
     margin-right: 15%;
 }
 
-.editable.editing {
-    background-color: #f0f0f0;
-    padding: 2px;
-    border: 1px solid #ccc;
+.editable.editing 
+{
+    background-color: #cfd3d185;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #0791A6;
  }

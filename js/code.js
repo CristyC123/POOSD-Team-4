@@ -15,21 +15,18 @@ let regex = /(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}$/;
  * @param { function } readyFunc Function to be executed with XMLHTTPRequest.onreadystatechange
  * @return { boolean } Success of request
  */
-function xhr(url, jsonPayload, id, readyFunc)
-{
-	let xhreq = new XMLHttpRequest();
-	xhreq.open("POST", url, true);
-	xhreq.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhreq.onreadystatechange = readyFunc;
-		xhreq.send(jsonPayload);
-		return true;
-	} catch (err)
-	{
-		document.getElementById(id).innerHTML = err.message;
-		return false;
-	}
+function xhr(url, jsonPayload, id, readyFunc) {
+   let xhreq = new XMLHttpRequest();
+   xhreq.open("POST", url, true);
+   xhreq.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+   try {
+      xhreq.onreadystatechange = readyFunc;
+      xhreq.send(jsonPayload);
+      return true;
+   } catch (err) {
+      document.getElementById(id).innerHTML = err.message;
+      return false;
+   }
 }
 
 /**
@@ -69,214 +66,196 @@ function readCookie() {
       }
    }
 
-   // if( userId < 0 )
-   // {
-   // 	window.location.href = "index.html";
-   // }
-   // else
-   // {
-   // 	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-   // }
+   if( userId < 0 )
+   {
+   	window.location.href = "index.html";
+   }
+   else
+   {
+   	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+   }
 }
 
 //sets id's background color to red & placeholder text to black
-function invalidInput(id)
-{
-	id.style.backgroundColor = "#bc4e43";
-	id.classList.add("invalidClass");
-	id.value = "";
+function invalidInput(id) {
+   id.style.backgroundColor = "#bc4e43";
+   id.classList.add("invalidClass");
+   id.value = "";
 }
 
 //resets id's background color & placeholder text to orignal values
-function resetInput(id)
-{
-	id.style.backgroundColor = "#f68456";
-	id.classList.remove("invalidClass");
-	id.value = "";
+function resetInput(id) {
+   id.style.backgroundColor = "#ffded1";
+   id.classList.remove("invalidClass");
+   id.value = "";
 }
 
 /**
  * Login request to server
  */
-function doLogin()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	
-	let login = document.getElementById("loginUser").value;
-	let password = document.getElementById("loginPass").value;
-//	var hash = md5( password );
-	
-	if(!validLogin(login, password)) return;
-	
-	document.getElementById("loginResult").innerHTML = "";
-	
-	let tmp = {
-		login: login,
-		password: password
-	};
-//	var tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Login.' + extension;
+function doLogin() {
+   userId = 0;
+   firstName = "";
+   lastName = "";
 
-	xhr(url, jsonPayload, "loginResult", function () {
-		console.log(this.readyState + " " + this.status);
-		if (this.readyState == 4 && this.status == 200) 
-		{
-			console.log(this.responseText);
-			let jsonObject = JSON.parse(this.responseText);
-			userId = jsonObject.id;
+   let login = document.getElementById("loginUser").value;
+   let password = document.getElementById("loginPass").value;
+   //	var hash = md5( password );
 
-			if( userId === undefined ) {
-				document.getElementById("loginResult").innerHTML = "Connection could not be resolved. Please try again soon.";
-				return false;
-			}
-	
-			if( userId < 1 )
-			{		
-				document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
-				return false;
-			}
-	
-			firstName = jsonObject.firstName;
-			lastName = jsonObject.lastName;
+   if (!validLogin(login, password)) return;
+
+   document.getElementById("loginResult").innerHTML = "";
+
+   let tmp = {
+      login: login,
+      password: password,
+   };
+   //	var tmp = {login:login,password:hash};
+   let jsonPayload = JSON.stringify(tmp);
+
+   let url = urlBase + "/Login." + extension;
+
+   xhr(url, jsonPayload, "loginResult", function () {
+      console.log(this.readyState + " " + this.status);
+      if (this.readyState == 4 && this.status == 200) {
+         console.log(this.responseText);
+         let jsonObject = JSON.parse(this.responseText);
+         userId = jsonObject.id;
+
+         if (userId === undefined) {
+            document.getElementById("loginResult").innerHTML =
+               "Connection could not be resolved. Please try again soon.";
+            return false;
+         }
+
+         if (userId < 1) {
+            document.getElementById("loginResult").innerHTML =
+               "User/Password combination incorrect";
+            return false;
+         }
+
+         firstName = jsonObject.firstName;
+         lastName = jsonObject.lastName;
 
          saveCookie();
 
-			window.location.href = "contacts.html";
-		}
-		else if (this.readyState == 4)
-		{
-			document.getElementById("loginResult").innerHTML = "Connection could not be resolved. Please try again later.";
-		}
-	});
-	return false;
+         window.location.href = "contacts.html";
+      } else if (this.readyState == 4) {
+         document.getElementById("loginResult").innerHTML =
+            "Connection could not be resolved. Please try again later.";
+      }
+   });
+   return false;
 }
 
 //Switches the displayed form to login from sign up
-function goLogin()
-{
-	var log = document.getElementById("loginForm");
-	var sign = document.getElementById("signupForm");
-	var lbut = document.getElementById("goLoginButton");
-	var sbut = document.getElementById("goSignupButton");
-	
-	log.style.top = "0px";
-	sign.style.top = "400px";
-	lbut.style.top = "600px";
-	sbut.style.top = "500px";
-	
-	document.getElementById("loginResult").innerHTML = "";
-	resetInput(loginUser);
-	resetInput(loginPass);
+function goLogin() {
+   var log = document.getElementById("loginForm");
+   var sign = document.getElementById("signupForm");
+   var lbut = document.getElementById("goLoginButton");
+   var sbut = document.getElementById("goSignupButton");
+
+   log.style.top = "0px";
+   sign.style.top = "400px";
+   lbut.style.top = "600px";
+   sbut.style.top = "500px";
+
+   document.getElementById("loginResult").innerHTML = "";
+   resetInput(loginUser);
+   resetInput(loginPass);
 }
 
 //Checks if the login info is valid
-function validLogin(user, pass)
-{
-	let logRes = "Please input a ";
-	let userOk = true;
-	let passOk = true;
-	
-	if(user == "") 
-	{
-		console.log("Username is blank");
-		logRes += "username";
-		invalidInput(loginUser);
-		userOk = false;
-	}
-	else 
-	{
-		if(regex.test(user) == false)
-		{
-			console.log("Username is invalid");
-			logRes += "username";
-			invalidInput(loginUser);
-			userOk = false;
-		}
-		
-		console.log("Username is valid");
-	}
-	
-	if(pass == "") 
-	{
-		if(!userOk) logRes += " and <br/>";
-		console.log("Password is blank");
-		logRes += "password";
-		invalidInput(loginPass);
-		passOk = false;
-	}
-	else
-	{
-		if(regex.test(pass) == false)
-		{
-			if(!userOk) logRes += " and <br/>";
-			console.log("Password is invalid");
-			logRes += "valid password";
-			invalidInput(loginPass);
-			passOk = false;
-		}
-		
-		console.log("Password is valid");
-	}
-	
-	if(!userOk || !passOk) 
-	{
-		logRes += " to login";
-		document.getElementById("loginResult").innerHTML = logRes;
-		return false;
-	}
-	
-	return true;
+function validLogin(user, pass) {
+   let logRes = "Please input a ";
+   let userOk = true;
+   let passOk = true;
+
+   if (user == "") {
+      console.log("Username is blank");
+      logRes += "username";
+      invalidInput(loginUser);
+      userOk = false;
+   } else {
+      if (regex.test(user) == false) {
+         console.log("Username is invalid");
+         logRes += "username";
+         invalidInput(loginUser);
+         userOk = false;
+      }
+
+      console.log("Username is valid");
+   }
+
+   if (pass == "") {
+      if (!userOk) logRes += " and <br/>";
+      console.log("Password is blank");
+      logRes += "password";
+      invalidInput(loginPass);
+      passOk = false;
+   } else {
+      if (regex.test(pass) == false) {
+         if (!userOk) logRes += " and <br/>";
+         console.log("Password is invalid");
+         logRes += "valid password";
+         invalidInput(loginPass);
+         passOk = false;
+      }
+
+      console.log("Password is valid");
+   }
+
+   if (!userOk || !passOk) {
+      logRes += " to login";
+      document.getElementById("loginResult").innerHTML = logRes;
+      return false;
+   }
+
+   return true;
 }
 
 /**
  * Sign up new user to server
  */
-function doSignup()
-{
-	firstName = document.getElementById("signupFName").value;
-	lastName = document.getElementById("signupLName").value;
-	let login = document.getElementById("signupUser").value;
-	let password = document.getElementById("signupPass").value;
-//	var hash = md5( password );
-	
-	if(!validSignup(firstName, lastName, login, password)) return;
-	
-	document.getElementById("signupResult").innerHTML = "";
-	
-	let tmp = {
-		firstName: firstName,
-		lastName: lastName,
-		login: login,
-		password: password
-	};
-	
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Signup.' + extension;
-	
-	xhr(url, jsonPayload, "signupResult", function() {
-		if(this.status == 409)
-		{
-			document.getElementById("signupResult").innerHTML = "User already exists";
-			console.log("Sign up failed since user already exists");
-			alert("This user already exists please login");
-			return;
-		}
-		
-		if (this.readyState == 4 && this.status == 200) 
-		{
-			let jsonObject = JSON.parse(this.responseText);
-			userId = jsonObject.id;
-			firstName = jsonObject.firstName;
-			lastName = jsonObject.lastName;
-			
-			document.getElementById("signupResult").innerHTML = "User added";
-			
-			saveCookie();
+function doSignup() {
+   firstName = document.getElementById("signupFName").value;
+   lastName = document.getElementById("signupLName").value;
+   let login = document.getElementById("signupUser").value;
+   let password = document.getElementById("signupPass").value;
+   //	var hash = md5( password );
+
+   if (!validSignup(firstName, lastName, login, password)) return;
+
+   document.getElementById("signupResult").innerHTML = "";
+
+   let tmp = {
+      firstName: firstName,
+      lastName: lastName,
+      login: login,
+      password: password,
+   };
+
+   let jsonPayload = JSON.stringify(tmp);
+
+   let url = urlBase + "/Signup." + extension;
+
+   xhr(url, jsonPayload, "signupResult", function () {
+      if (this.status == 409) {
+         document.getElementById("signupResult").innerHTML =
+            "User already exists";
+         console.log("Sign up failed since user already exists");
+         return;
+      }
+
+      if (this.readyState == 4 && this.status == 200) {
+         let jsonObject = JSON.parse(this.responseText);
+         userId = jsonObject.id;
+         firstName = jsonObject.firstName;
+         lastName = jsonObject.lastName;
+
+         document.getElementById("signupResult").innerHTML = "User added";
+
+         saveCookie();
 
          window.location.href = "contacts.html";
       }
@@ -284,203 +263,178 @@ function doSignup()
 }
 
 //Switches the displayed form to sign up from login
-function goSignup()
-{
-	var log = document.getElementById("loginForm");
-	var sign = document.getElementById("signupForm");
-	var lbut = document.getElementById("goLoginButton");
-	var sbut = document.getElementById("goSignupButton");
-	
-	log.style.top = "-400px";
-	sign.style.top = "-218px";
-	lbut.style.top = "500px";
-	sbut.style.top = "600px";
-	
-	document.getElementById("signupResult").innerHTML = "";
-	resetInput(signupFName);
-	resetInput(signupLName);
-	resetInput(signupUser);
-	resetInput(signupPass);
+function goSignup() {
+   var log = document.getElementById("loginForm");
+   var sign = document.getElementById("signupForm");
+   var lbut = document.getElementById("goLoginButton");
+   var sbut = document.getElementById("goSignupButton");
+
+   log.style.top = "-400px";
+   sign.style.top = "-218px";
+   lbut.style.top = "500px";
+   sbut.style.top = "600px";
+
+   document.getElementById("signupResult").innerHTML = "";
+   resetInput(signupFName);
+   resetInput(signupLName);
+   resetInput(signupUser);
+   resetInput(signupPass);
 }
 
 //Checks if the sign up info is valid
-function validSignup(fname, lname, user, pass)
-{
-	let signResN = "Please input a ";
-	let signResC = "Please input a ";
-	let fnameOk = true;
-	let lnameOk = true;
-	let userOk = true;
-	let passOk = true;
-	
-	if(fname === "") 
-	{
-		console.log("First name is blank");
-		signResN += "first name";
-		invalidInput(signupFName);
-		fnameOk = false;
-	}
-	else 
-	{
-		if(regex.test(fname) === false)
-		{
-			console.log("First name is invalid");
-			signResN += "valid first name";
-			invalidInput(signupFName);
-			fnameOk = false;
-		}
-		
-		console.log("First name is valid");
-	}
-	
-	if(lname == "") 
-	{
-		if(!fnameOk) signResN += " and <br/>";
-		console.log("Last name is blank");
-		signResN += "last name";
-		invalidInput(signupLName);
-		lnameOk = false;
-	}
-	else
-	{
-		if(regex.test(lname) === false)
-		{
-			if(!fnameOk) signResN += " and <br/>";
-			console.log("Last name is invalid");
-			signResN += "valid last name";
-			invalidInput(signupLName);
-			lnameOk = false;
-		}
-		
-		console.log("Last name is valid");
-	}
-	
-	signResN += " to sign up";
-	
-	if(user === "") 
-	{
-		console.log("Username is blank");
-		signResC += "username";
-		invalidInput(signupUser);
-		userOk = false;
-	}
-	else 
-	{
-		if(regex.test(user) === false)
-		{
-			console.log("Username is invalid");
-			signResC += "valid username";
-			invalidInput(signupUser);
-			userOk = false;
-		}
-		
-		console.log("Username is valid");
-	}
-	
-	if(pass === "") 
-	{
-		if(!userOk) signResC += " and <br/>";
-		console.log("Password is blank");
-		signResC += "password";
-		invalidInput(signupPass);
-		passOk = false;
-	}
-	else
-	{
-		if(regex.test(pass) === false)
-		{
-			if(!userOk) signResC += " and <br/>";
-			console.log("Password is invalid");
-			signResC += "valid password";
-			invalidInput(signupPass);
-			passOk = false;
-		}
-		
-		console.log("Password is valid");
-	}
-	
-	signResC += " to sign up";
-	
-	if(!fnameOk || !lnameOk)
-	{
-		if(!userOk || !passOk)
-		{
-			document.getElementById("signupResult").innerHTML = signResN + "<br/>" + signResC;
-			return false;
-		}
-		document.getElementById("signupResult").innerHTML = signResN;
-		return false;
-	}
-	
-	if(!userOk || !passOk)
-	{
-		document.getElementById("signupResult").innerHTML = signResC;
-		return false;
-	}
-	
-	return true;
+function validSignup(fname, lname, user, pass) {
+   let signResN = "Please input a ";
+   let signResC = "Please input a ";
+   let fnameOk = true;
+   let lnameOk = true;
+   let userOk = true;
+   let passOk = true;
+
+   if (fname === "") {
+      console.log("First name is blank");
+      signResN += "first name";
+      invalidInput(signupFName);
+      fnameOk = false;
+   } else {
+      if (regex.test(fname) === false) {
+         console.log("First name is invalid");
+         signResN += "valid first name";
+         invalidInput(signupFName);
+         fnameOk = false;
+      }
+
+      console.log("First name is valid");
+   }
+
+   if (lname == "") {
+      if (!fnameOk) signResN += " and <br/>";
+      console.log("Last name is blank");
+      signResN += "last name";
+      invalidInput(signupLName);
+      lnameOk = false;
+   } else {
+      if (regex.test(lname) === false) {
+         if (!fnameOk) signResN += " and <br/>";
+         console.log("Last name is invalid");
+         signResN += "valid last name";
+         invalidInput(signupLName);
+         lnameOk = false;
+      }
+
+      console.log("Last name is valid");
+   }
+
+   signResN += " to sign up";
+
+   if (user === "") {
+      console.log("Username is blank");
+      signResC += "username";
+      invalidInput(signupUser);
+      userOk = false;
+   } else {
+      if (regex.test(user) === false) {
+         console.log("Username is invalid");
+         signResC += "valid username";
+         invalidInput(signupUser);
+         userOk = false;
+      }
+
+      console.log("Username is valid");
+   }
+
+   if (pass === "") {
+      if (!userOk) signResC += " and <br/>";
+      console.log("Password is blank");
+      signResC += "password";
+      invalidInput(signupPass);
+      passOk = false;
+   } else {
+      if (regex.test(pass) === false) {
+         if (!userOk) signResC += " and <br/>";
+         console.log("Password is invalid");
+         signResC += "valid password";
+         invalidInput(signupPass);
+         passOk = false;
+      }
+
+      console.log("Password is valid");
+   }
+
+   signResC += " to sign up";
+
+   if (!fnameOk || !lnameOk) {
+      if (!userOk || !passOk) {
+         document.getElementById("signupResult").innerHTML =
+            signResN + "<br/>" + signResC;
+         return false;
+      }
+      document.getElementById("signupResult").innerHTML = signResN;
+      return false;
+   }
+
+   if (!userOk || !passOk) {
+      document.getElementById("signupResult").innerHTML = signResC;
+      return false;
+   }
+
+   return true;
 }
 
 /**
  * Ends session and expires all cookies
  */
-function doLogout()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
+function doLogout() {
+   userId = 0;
+   firstName = "";
+   lastName = "";
+   document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+   window.location.href = "index.html";
 }
 
 /**
  * Adds contact to user's contact list
  */
 function toggleNewContactBox() {
-	const newContactBox = document.getElementById("newContactBox");
-	newContactBox.style.display = newContactBox.style.display === "none" ? "block" : "none";
+   const newContactBox = document.getElementById("newContactBox");
+   newContactBox.style.display =
+      newContactBox.style.display === "none" ? "block" : "none";
 }
 
 function addContact() {
-	let contactName = document.getElementById("newContactName").value;
-	let contactEmail = document.getElementById("newContactEmail").value;
-	let contactPhone = document.getElementById("newContactPhone").value;
+   let contactName = document.getElementById("newContactName").value;
+   let contactEmail = document.getElementById("newContactEmail").value;
+   let contactPhone = document.getElementById("newContactPhone").value;
 
-	if (!contactName || !contactEmail || !contactPhone) {
-		 alert("Please fill in all fields");
-		 return;
-	}
+   if (!contactName || !contactEmail || !contactPhone) {
+      return;
+   }
 
-	let tmp = {
-		 name: contactName,
-		 email: contactEmail,
-		 phone: contactPhone,
-		 userId: userId,
-	};
+   let tmp = {
+      name: contactName,
+      email: contactEmail,
+      phone: contactPhone,
+      userId: userId,
+   };
 
-	let jsonPayload = JSON.stringify(tmp);
+   let jsonPayload = JSON.stringify(tmp);
 
-	let url = urlBase + "/Add." + extension;
+   let url = urlBase + "/Add." + extension;
 
-	xhr(url, jsonPayload, "", function () {
-		 if (this.readyState == 4 && this.status == 200) {
-			  let jsonObject = JSON.parse(this.responseText);
-			  if (jsonObject.error === "") {
-					// Clear input fields
-					document.getElementById("newContactName").value = "";
-					document.getElementById("newContactEmail").value = "";
-					document.getElementById("newContactPhone").value = "";
+   xhr(url, jsonPayload, "", function () {
+      if (this.readyState == 4 && this.status == 200) {
+         let jsonObject = JSON.parse(this.responseText);
+         if (jsonObject.error === "") {
+            document.getElementById("newContactName").value = "";
+            document.getElementById("newContactEmail").value = "";
+            document.getElementById("newContactPhone").value = "";
 
-					// Hide the new contact box
-					document.getElementById("newContactBox").style.display = "none";
+            document.getElementById("newContactBox").style.display = "none";
 
-					// Refresh the contact list
-					searchContacts();
-			  } else {
-					alert(jsonObject.error);
-			  }
-		 }
-	});
+            searchContacts();
+         } else {
+         }
+      }
+   });
 }
 
 /**
@@ -548,7 +502,9 @@ function searchContacts() {
                </div>
             `;
 
-            document.getElementById("contactList").insertAdjacentHTML("beforeend", contactHtml);
+            document
+               .getElementById("contactList")
+               .insertAdjacentHTML("beforeend", contactHtml);
          }
       }
    });
@@ -570,10 +526,9 @@ function deleteContact(id) {
 
    xhr(url, jsonPayload, "", function () {
       if (this.readyState == 4 && this.status == 200) {
-			searchContacts();
+         searchContacts();
       }
    });
-
 }
 
 /**
@@ -581,32 +536,32 @@ function deleteContact(id) {
  */
 function editContact(id) {
    const contactRow = document.getElementById(`contact-${id}`);
-   const editableFields = contactRow.querySelectorAll('.editable');
-   const editBtn = contactRow.querySelector('.edit-btn');
-   const saveBtn = contactRow.querySelector('.save-btn');
+   const editableFields = contactRow.querySelectorAll(".editable");
+   const editBtn = contactRow.querySelector(".edit-btn");
+   const saveBtn = contactRow.querySelector(".save-btn");
 
-   editableFields.forEach(field => {
+   editableFields.forEach((field) => {
       field.contentEditable = true;
-      field.classList.add('editing');
+      field.classList.add("editing");
    });
 
-   editBtn.style.display = 'none';
-   saveBtn.style.display = 'inline-block';
+   editBtn.style.display = "none";
+   saveBtn.style.display = "inline-block";
 }
 
 // Modify the saveContact function:
 function saveContact(id) {
    const contactRow = document.getElementById(`contact-${id}`);
-   const editableFields = contactRow.querySelectorAll('.editable');
-   const editBtn = contactRow.querySelector('.edit-btn');
-   const saveBtn = contactRow.querySelector('.save-btn');
+   const editableFields = contactRow.querySelectorAll(".editable");
+   const editBtn = contactRow.querySelector(".edit-btn");
+   const saveBtn = contactRow.querySelector(".save-btn");
 
    const newName = document.getElementById(`name-${id}`).textContent;
    const newEmail = document.getElementById(`email-${id}`).textContent;
    const newPhone = document.getElementById(`phone-${id}`).textContent;
 
    let tmp = {
-      ID: id,              // Ensure the key names match the PHP code
+      ID: id,
       Name: newName,
       Email: newEmail,
       Phone: newPhone,
@@ -620,17 +575,13 @@ function saveContact(id) {
       if (this.readyState == 4 && this.status == 200) {
          let response = JSON.parse(this.responseText);
          if (response.error === "") {
-            editableFields.forEach(field => {
+            editableFields.forEach((field) => {
                field.contentEditable = false;
-               field.classList.remove('editing');
+               field.classList.remove("editing");
             });
 
-            editBtn.style.display = 'inline-block';
-            saveBtn.style.display = 'none';
-
-            // You can add a success message here if needed
-         } else {
-            alert("Error updating contact: " + response.error);
+            editBtn.style.display = "inline-block";
+            saveBtn.style.display = "none";
          }
       }
    });
@@ -645,11 +596,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (contactRow) {
          // Check if the click is on the header or toggle indicator
          if (event.target.closest(".contact-header, .toggle-indicator")) {
-            toggleContact(contactRow);
-         }
-         // Prevent toggling when clicking on editable fields or buttons
-         if (event.target.closest(".editable, .contactButtons")) {
-            event.stopPropagation();
+            // Prevent toggling when clicking on editable fields or buttons
+            if (!event.target.closest(".editable, .contactButtons")) {
+               toggleContact(contactRow);
+            }
          }
       }
    });

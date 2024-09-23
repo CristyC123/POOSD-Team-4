@@ -16,9 +16,13 @@
 		$stmt = $conn->prepare("INSERT into Users (FirstName,LastName,Login,Password) VALUES(?,?,?,?)");
 		$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
 		$stmt->execute();
+		
+		$id = $conn->insert_id;
+		
 		$stmt->close();
 		$conn->close();
-		returnWithError("Unable to Sign Up. Try Again");
+		
+		returnWithInfo($id, $firstName, $lastName, $login);
 	}
 
 	function getRequestInfo()
@@ -35,6 +39,12 @@
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+	
+	function returnWithInfo( $id, $firstName, $lastName, $login )
+	{
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","login":"' . $login . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
