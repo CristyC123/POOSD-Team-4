@@ -508,6 +508,8 @@ function searchContacts() {
          }
       }
    });
+
+   return false;
 }
 
 /**

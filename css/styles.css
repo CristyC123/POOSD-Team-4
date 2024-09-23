@@ -306,3 +306,13 @@ body
     border-radius: 5px;
     border: 1px solid #0791A6;
  }
+
+ input[type="submit"]
+{
+	visibility: hidden;
+}
+
+#submitSearch
+{
+    visibility: hidden;
+}

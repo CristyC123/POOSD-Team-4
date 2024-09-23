@@ -28,8 +28,11 @@
     <div class="container">
         <div id="searchContainer">
             <div id="searchBarWrapper">
-                <input type="text" id="searchBar" placeholder="Enter Name" />
-                <button id="searchButton" class="contactButtons" onclick="searchContacts()">Search</button>
+                <form onsubmit="return searchContacts();" class="form" id="searchForm">
+                    <input type="text" id="searchBar" placeholder="Enter Name" />
+                    <button id="searchButton" class="contactButtons" onclick="searchContacts()">Search</button>
+                    <input type="submit" id="submitSearch" />
+                </form>
             </div>
             <button id="addBtn" class="contactButtons" onclick="toggleNewContactBox()">Add</button>
         </div>

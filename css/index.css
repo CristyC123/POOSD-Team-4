@@ -196,6 +196,11 @@ input[type="password"]
 	border: none;
 }
 
+input[type="submit"]
+{
+	visibility: hidden;
+}
+
 .invalidClass::-webkit-input-placeholder
 {
 	color: black;
