@@ -34,19 +34,17 @@ body
 #contactTitleBox
 {
 	background-color: #046C78;
-
     background-blend-mode: multiply;
 	background-size: contain;
-
     background-image: url("../images/box-background-wave-top.jpg");
 
 	height: 50px;
 	width: 60%;
+	
+	box-shadow: 4px 4px 3px#f683568e;
 	border: 3px solid #f68456;
 	border-bottom-width: 0px;
 	border-right-color: black;
-	box-shadow: 4px 4px 3px#f683568e;
-
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -55,22 +53,20 @@ body
 #contactTitleBox2
 {
 	background-color: #046C78;
-
     background-blend-mode: multiply;
 	background-size: contain;
-
     background-image: url("../images/box-background-wave-bottom.jpg");
-
+	
 	height: 50px;
 	width: 90%;
 	margin-left: 3%;
 	margin-right: 5%;
+	
+	box-shadow: 4px 4px 3px#f683568e;
 	border: 3px solid #f68456;
 	border-top-width: 0px;
 	border-bottom-color: black;
 	border-right-color: black;
-	box-shadow: 4px 4px 3px#f683568e;
- 
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -79,24 +75,26 @@ body
 #contactTitle 
 {
 	display: inline-block;
-    font-size: 40px;
     width: 100%;
     margin-left: 10%;
+	
     text-align: left;
     font-family: 'Ubuntu', sans-serif;
+	font-size: 40px;
     color: #f68456;
 }
 
 .contactButtons
 {
     background-color: #0791A6;
-    color: #ffffff;
-    font-size: 16px;
     border-radius: 20px;
+	border: none;
     padding: 5px;
+	
     font-family: 'Ubuntu', sans-serif;
+	font-size: 16px;
 	text-align: center;
-    border: none;
+	color: #ffffff;
 }
 
 .contactButtons:hover
@@ -126,9 +124,11 @@ body
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     border: none;
+	
     height: 42.5px;
     width: 40%;
     padding-left: 10px;
+	
 	font-size: 18px
 }
 
@@ -137,8 +137,10 @@ body
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
     border-left: none;
+	
+	width: 70px;
+	
     font-size: 18px;
-    width: 70px;
 } 
 
 #addBtn
@@ -180,7 +182,6 @@ body
 
 .contact-name 
 {
-    
     font-size: 30px;
     font-weight: bold;
     font-family: 'Ubuntu', sans-serif;
@@ -283,12 +284,14 @@ body
 .contact-row input 
 {
     background-color: #CFD3D1;
-    font-size: 16px;
+	border-radius: 5px;
+    border: 1px solid #0791A6;
+	
     padding: 5px;
     margin: 5px;
     width: 100%;
-    border-radius: 5px;
-    border: 1px solid #0791A6;
+	
+	font-size: 16px;
 }
 
 #newContactBox
@@ -300,9 +303,10 @@ body
 .editable.editing 
 {
     background-color: #cfd3d185;
+	border-radius: 5px;
+    border: 1px solid #0791A6;
+	
     padding: 5px;
     margin: 5px;
     width: 100%;
-    border-radius: 5px;
-    border: 1px solid #0791A6;
- }
+}
