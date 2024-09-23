@@ -66,14 +66,14 @@ function readCookie() {
       }
    }
 
-   if( userId < 0 )
-   {
-   	window.location.href = "index.html";
-   }
-   else
-   {
-   	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-   }
+   // if( userId < 0 )
+   // {
+   // 	window.location.href = "index.html";
+   // }
+   // else
+   // {
+   // 	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+   // }
 }
 
 //sets id's background color to red & placeholder text to black
