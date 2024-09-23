@@ -121,6 +121,14 @@ body
     margin-left: 15%;
 }
 
+#searchForm
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: 15%;
+}
+
 #searchBar
 {
     border-bottom-left-radius: 20px;
