@@ -1,4 +1,4 @@
-body 
+body
 {
 	background-image: url("../images/main-background-wave.jpg");
 	background-color: #046C78;
@@ -10,7 +10,7 @@ body
 	display: inline-block;
 	text-align: center;
 	font-family: 'Ubuntu', sans-serif;
-   color: #f68456;
+	color: #f68456;
 }
 
 .buttonText
@@ -18,7 +18,7 @@ body
 	display: inline-block;
 	text-align: center;
 	font-family: 'Ubuntu', sans-serif;
-   color: #ffffff;
+	color: #ffffff;
 }
 
 .box 
@@ -26,36 +26,31 @@ body
 	background-color: #046C78;
 	background-blend-mode: multiply;
 	background-size: contain;
+	
+	box-shadow: 4px 4px 3px#f683568e;
 	border: 3px solid #f68456;
+	
 	height: 50px;
 	width: 65px;
-	box-shadow: 4px 4px 3px#f683568e;
 }
 
 .buttons
 {
-   background-color: #0791A6;
-   font-size: 20px;
+	background-color: #0791A6;
+	font-size: 20px;
 
 	border: none;
-	/* border: 2px solid black;
-	border-top-color: #f68456;
-	border-left-color: #f68456; */
+	border-radius: 20px;
 	
-   border-radius: 20px;
-   width: 30%;
+	width: 30%;
 	margin: 0;
 	position: absolute;
 	left: 35%;
-   padding: 5px;
+	padding: 5px;
 }
 
 .buttons:hover{
    background-color: #f68456;
-	/* border: 2px solid #f68456;
-	border-top-color: black;
-	border-left-color: black; */
-   /* color: #046C78; */
    opacity: 75%;
 }
 
@@ -68,28 +63,30 @@ body
 #titleBox
 {
 	background-image: url("../images/box-background-wave-top.jpg");
+	
 	width: 60%;
+	
 	border-bottom-width: 0px;
 	border-right-color: black;
-
 	border-top-left-radius: 10px;
-   border-top-right-radius: 10px;
-   border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 #titleBox2
 {
 	background-image: url("../images/box-background-wave-bottom.jpg");
+	
 	width: 90%;
 	margin-left: 3%;
 	margin-right: 5%;
+	
 	border-top-width: 0px;
 	border-bottom-width: 0px;
 	border-right-color: black;
-
 	border-top-right-radius: 10px;
-   border-bottom-left-radius: 10px;
-   border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 #titleBox3 
@@ -97,15 +94,15 @@ body
 	background-image: url("../images/box-background-wave-left.jpg");
 	background-size: auto 150px;
 	background-repeat: repeat-y;
+	
 	float: left;
 	height: 40%;
 	margin-left: 6%;
+	
 	border-top-width: 0px;
 	border-right-width: 0px;
 	border-bottom-color: black;
-
-   border-bottom-left-radius: 10px;
-	
+	border-bottom-left-radius: 10px;
 }
 
 #titleBox4
@@ -114,14 +111,15 @@ body
 	background-size: auto 150px;
 	background-position: right 0px;
 	background-repeat: repeat-y;
+	
 	float: left;
 	height: 80%;
+	
 	border-top-width: 0px;
 	border-left-width: 0px;
 	border-bottom-color: black;
 	border-right-color: black;
-
-   border-bottom-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
 
@@ -131,35 +129,36 @@ body
 	right: 5%;
 	bottom: 5%;
 	width: 180px;
+	
 	border-bottom-color: black;
 	border-right-color: black;
-
 	border-radius: 10px;
 }
 
 #loginBox
 {
 	margin-left: 44%;
-	left: -134px;
 	margin-top: 100px;
-   font-size: 30px;
+	left: -134px;
 	height: 500px;
-   width: 500px;
+	width: 500px;
 	position: relative;
-   padding: 25px;
+	padding: 25px;
+	overflow: hidden;
+	
 	border-bottom-color: black;
 	border-right-color: black;
-	overflow: hidden;
-
 	border-radius: 10px;
+	
+	font-size: 30px;
 }
 
 #title 
 {
-    font-size: 40px;
     width: 100%;
     margin-left: 10%;
     text-align: left;
+	font-size: 40px;
 }
 
 #inner-title
@@ -173,27 +172,31 @@ body
 input[type="text"]
 {
 	background-color: #ffded1;
-	text-align: center;
+	border-radius: 15px;
+	border: none;
+	
     width: 80%;
     margin-left: 10%;
     margin-bottom: 3%;
+	
+	text-align: center;
     font-family: 'Ubuntu', sans-serif;
-	border-radius: 15px;
 	font-size: 25px;
-	border: none;
 }
 
 input[type="password"]
 {
 	background-color: #ffded1;
-	text-align: center;
+	border-radius: 15px;
+	border: none;
+	
     width: 80%;
     margin-left: 10%;
     margin-bottom: 3%;
+	
+	text-align: center;
     font-family: 'Ubuntu', sans-serif;
-	border-radius: 15px;
 	font-size: 25px;
-	border: none;
 }
 
 input[type="submit"]
@@ -208,11 +211,12 @@ input[type="submit"]
 
 #github
 {
-   font-size: 40px;
+	font-size: 40px;
 	font-style: italic;
 	font-weight: bolder;
-   width: 100%;
 	text-decoration: none;
+	
+	width: 100%;
 }
 
 #loginResult
